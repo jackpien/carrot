@@ -1,6 +1,6 @@
 # Setup celery with SQS and EBS
 
-Inspired by https://howto.lintel.in/configure-celery-sqs-django-elastic-beanstalk/ and https://realpython.com/asynchronous-tasks-with-django-and-celery/
+Inspired by https://howto.lintel.in/configure-celery-sqs-django-elastic-beanstalk/ and https://realpython.com/asynchronous-tasks-with-django-and-celery/ and http://diegojancic.blogspot.com/2016/12/making-celery-4-work-in-django-110-and.html
 
 1. pip install celery[sqs]
 1. aws sqs create-queue --queue-name dev-celery
