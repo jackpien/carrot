@@ -89,7 +89,7 @@ fi
 /usr/local/bin/supervisorctl -c /opt/python/etc/supervisord.conf reread
 
 # Update supervisord in cache without restarting all services
-/usr/local/bin/supervisorctl -c /opt/python/etc/supervisord.conf update
+/usr/local/bin/supervisorctl -c /opt/python/etc/supervisord.conf update celeryd-worker
 
 # Start/Restart celeryd through supervisord
 /usr/local/bin/supervisorctl -c /opt/python/etc/supervisord.conf restart celeryd-worker
