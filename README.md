@@ -11,7 +11,7 @@ Inspired by https://howto.lintel.in/configure-celery-sqs-django-elastic-beanstal
 
 ## Start a beat
 
-1. celert beat --app=carrot --loglevel=INFO
+1. celery beat --app=carrot --loglevel=INFO
 
 ## Push a message
 
