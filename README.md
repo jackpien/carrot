@@ -27,3 +27,6 @@ In each app folder, create a file tasks.py
 
 
 https://stackoverflow.com/questions/29205720/daemonize-celerybeat-in-elastic-beanstalkaws
+
+1. sudo yum install -y openssl-devel.x86_64 libcurl-devel.x86_64
+1. sudo apt-get install libcurl4-openssl-dev libssl-dev
