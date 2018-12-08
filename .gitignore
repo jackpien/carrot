@@ -3,3 +3,13 @@
 db.sqlite3
 celerybeat-schedule
 __pycache__/*
+
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+
+aws_eb_secret_envs.yaml
+_eb_create__dump_ebs_envs.py
+eb_create.bash
