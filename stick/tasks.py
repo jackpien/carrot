@@ -13,7 +13,7 @@ def debug_task_stick(self, prefix=""):
 
 @periodic_task(
     #run_every=(crontab(minute='*/1')),
-    run_every=timedelta(seconds=5),
+    run_every=timedelta(seconds=30),
     name="fetch_users",
     ignore_result=True
 )
