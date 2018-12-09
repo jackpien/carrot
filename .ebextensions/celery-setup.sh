@@ -8,8 +8,14 @@ id -u celery &>/dev/null || sudo useradd -g celery celery
 sudo chown -R celery:celery /var/log/celery/
 sudo chown -R celery:celery /var/run/celery/
 
-# Get django environment variables
-celeryenv=`cat /opt/python/current/env | tr '\n' ',' | sed 's/export //g' | sed 's/$PATH/%(ENV_PATH)s/g' | sed 's/$PYTHONPATH//g' | sed 's/$LD_LIBRARY_PATH//g'`
+# Get django environment variables - run from containers_command so should
+# source env from ondeck dir
+celeryenv=`cat /opt/python/ondeck/env | tr '\n' ',' | sed 's/export //g' | sed 's/$PATH/%(ENV_PATH)s/g' | sed 's/$PYTHONPATH//g' | sed 's/$LD_LIBRARY_PATH//g'`
+if [ "$celeryenv" == "" ]
+then
+    celeryenv=`cat /opt/python/current/env | tr '\n' ',' | sed 's/export //g' | sed 's/$PATH/%(ENV_PATH)s/g' | sed 's/$PYTHONPATH//g' | sed 's/$LD_LIBRARY_PATH//g'`
+fi
+
 celeryenv=${celeryenv%?}
 
 celeryproject=carrot
