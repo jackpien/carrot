@@ -19,17 +19,18 @@ fi
 celeryenv=${celeryenv%?}
 
 celeryproject=carrot
+numthreads=1
 
 # Create celery configuraiton script
 celeryconf="[program:celeryd-worker]
 ; Set full path to celery program if using virtualenv
-command=/opt/python/run/venv/bin/celery worker -A $celeryproject -P solo --loglevel=INFO -n worker.%%h --logfile='/var/log/celery/%%n%%I-worker.log' --pidfile='/var/run/celery/%%n.pid'
+command=/opt/python/run/venv/bin/celery worker -c $numthreads -A $celeryproject -P solo --loglevel=INFO -n worker.%%h --logfile='/var/log/celery/%%n%%I-worker.log' --pidfile='/var/run/celery/%%n.pid'
 
-directory=/opt/python/current/app
+directory=/opt/python/celery_run_dir/app
 user=celery
 numprocs=1
-stdout_logfile=/var/log/celery/worker.log
-stderr_logfile=/var/log/celery/worker.log
+stdout_logfile=/var/log/celery/worker-stdout.log
+stderr_logfile=/var/log/celery/worker-stderr.log
 autostart=true
 autorestart=true
 startsecs=10
@@ -55,11 +56,11 @@ celerybeatconf="[program:celeryd-beat]
 ; Set full path to celery program if using virtualenv
 command=/opt/python/run/venv/bin/celery beat -A $celeryproject --loglevel=INFO --logfile='/var/log/celery/celery-beat.log' --pidfile='/var/run/celery/celery-beat.pid' --schedule='/var/run/celery/beat.db' 
 
-directory=/opt/python/current/app
+directory=/opt/python/celery_run_dir/app
 user=celery
 numprocs=1
-stdout_logfile=/var/log/celery/beat.log
-stderr_logfile=/var/log/celery/beat.log
+stdout_logfile=/var/log/celery/beat-stdout.log
+stderr_logfile=/var/log/celery/beat-stderr.log
 autostart=true
 autorestart=true
 startsecs=10

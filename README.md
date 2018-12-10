@@ -12,6 +12,8 @@ Inspired by https://howto.lintel.in/configure-celery-sqs-django-elastic-beanstal
 ## Start a beat
 
 1. celery beat --app=carrot --loglevel=INFO
+1. If you are using django-celery-beat then
+   1. celery beat --app=carrot -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
 
 ## Push a message
 
@@ -28,5 +30,8 @@ In each app folder, create a file tasks.py
 
 https://stackoverflow.com/questions/29205720/daemonize-celerybeat-in-elastic-beanstalkaws
 
+## Other info
+
 1. sudo yum install -y openssl-devel.x86_64 libcurl-devel.x86_64
 1. sudo apt-get install libcurl4-openssl-dev libssl-dev
+1. [How to decode / deserialize SQS celery messages](https://stackoverflow.com/questions/51515692/how-to-decode-celery-message-in-sqs)

@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_celery_results',
+    'django_celery_beat',
 ]
 
 MIDDLEWARE = [
@@ -127,9 +129,11 @@ CELERY_BROKER_URL = 'sqs://'
 CELERY_BROKER_TRANSPORT_OPTIONS = {
     'region': 'us-east-1',
     'visibility_timeout': 3600,
-    'polling_interval': 10,
+    'polling_interval': 30,
     'queue_name_prefix': '%s-' % {
         True: 'dev',
         False: 'production'}[DEBUG],
     'CELERYD_PREFETCH_MULTIPLIER': 0,
 }
+
+CELERY_RESULT_BACKEND = 'django-db'
